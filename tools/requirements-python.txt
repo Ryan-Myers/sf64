@@ -1,9 +1,9 @@
-spimdisasm==1.17.0
-rabbitizer==1.7.0
+spimdisasm==1.19.0
+rabbitizer==1.8.0
 PyYAML
 pylibyaml
 tqdm
 intervaltree
 colorama
 pygfxd
-n64img>=0.1.4
+n64img>=0.3.3
