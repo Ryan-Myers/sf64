@@ -519,6 +519,7 @@ void func_800A3CA0(void);
 // fox_play
 s32 Play_CheckMedalStatus(u16);
 s32 Play_GetMaxShields(void);
+void func_800A4F4C(Object_58* obj58);
 void func_800A6028(Vec3f*, u32);
 void func_800A5844(void);
 void func_800A5D6C(void);
