@@ -19,7 +19,7 @@ void func_i1_80198C50(void) {
                 obj58->obj.pos.x = D_80178310[i].xPos;
                 obj58->obj.pos.z = -D_80178310[i].zPos1;
                 obj58->obj.pos.y = D_80178310[i].yPos - (Rand_ZeroOneSeeded() * 300.0f);
-                obj58->obj.rot.y = D_80178310[i].unk_C;
+                obj58->obj.rot.y = D_80178310[i].rot.y;
                 Object_SetInfo(&obj58->info, obj58->obj.id);
                 obj58++;
             }
