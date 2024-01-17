@@ -145,6 +145,10 @@ void func_8004319C(Player* player, f32 arg1, f32 arg2, f32 arg3);
 // fox_43E80
 void func_80043468(Player*  player);
 void func_800444BC(Player * player);
+void func_80044868(Player*);
+void func_80045130(Player*);
+void func_80045678(Player*);
+void func_80045E7C(Player*);
 void func_80047504(Player * player);
 void func_80046358(Player*);
 
@@ -522,6 +526,7 @@ s32 Play_GetMaxShields(void);
 void func_800A4F4C(Object_58* obj58);
 void func_800A6028(Vec3f*, u32);
 void func_800A5844(void);
+void func_800A594C(void);
 void func_800A5D6C(void);
 void func_800A5FA0(Vec3f* , u32 , s32 );
 void func_800A6070(Vec3f* arg0, u32 arg1);
@@ -852,7 +857,7 @@ void func_EF0260_8018AAC4(void);
 // void func_i1_80193540(Object*); 
 // void func_i1_80194398(Object*); 
 // void func_i1_801985E4(Object*); 
-// void func_i1_80198968(Object*); 
+void func_i1_80198968(Item*); 
 // void func_i2_8018756C(Object*); 
 // void func_i2_80187650(Object*); 
 // void func_i2_801877C4(Object*); 
