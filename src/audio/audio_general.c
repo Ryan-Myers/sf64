@@ -639,7 +639,7 @@ void Audio_StartSequence(u8 seqPlayId, u8 seqId, u8 seqArgs, u16 fadeInTime) {
         sActiveSequences[seqPlayId].tempo.timer = 0;
         sActiveSequences[seqPlayId].tempoOriginal = 0;
         sActiveSequences[seqPlayId].tempoCmd = 0;
-        
+
         for (i = 0; i < SEQ_NUM_CHANNELS; i++) {
             sActiveSequences[seqPlayId].channelMod[i].volume.value = 1.0f;
             sActiveSequences[seqPlayId].channelMod[i].volume.timer = 0;

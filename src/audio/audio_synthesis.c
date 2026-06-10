@@ -884,7 +884,7 @@ Acmd* AudioSynth_ProcessSample(s32 noteIndex, NoteSampleState* sampleState, Note
     flags = A_CONTINUE;
 
     // Initialize the synthesis state
-    if (sampleState->bitField0.needsInit == 1) {
+    if (sampleState->bitField0.needsInit == true) {
         flags = A_INIT;
         synthState->restart = 0;
         synthState->samplePosInt = 0;

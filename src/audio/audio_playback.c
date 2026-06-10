@@ -238,7 +238,7 @@ void AudioPlayback_NoteDisable(Note* note) {
     note->playbackState.status = PLAYBACK_STATUS_0;
     note->playbackState.parentLayer = NO_LAYER;
     note->playbackState.prevParentLayer = NO_LAYER;
-    note->sampleState.bitField0.finished = 0;
+    note->sampleState.bitField0.finished = false;
     note->playbackState.adsr.state = ADSR_STATE_DISABLED;
     note->playbackState.adsr.current = 0.0f;
 }
@@ -250,9 +250,9 @@ void AudioPlayback_ProcessNotes(void) {
     Note* note;
     NotePlaybackState* playbackState;
     NoteSampleState* sampleState;
-    NoteAttributes* attr;
+    NoteAttributes* playbackStateAttr;
     s32 i;
-    NoteAttributes sp70;
+    NoteAttributes attr;
     u8 bookOffset;
     f32 scale;
 
@@ -300,7 +300,7 @@ void AudioPlayback_ProcessNotes(void) {
             if (1) {}
             sampleState = &note->sampleState;
             if ((playbackState->status > PLAYBACK_STATUS_0) || sampleState->bitField0.finished) {
-                if ((playbackState->adsr.state == 0) || sampleState->bitField0.finished) {
+                if ((playbackState->adsr.state == ADSR_STATE_DISABLED) || sampleState->bitField0.finished) {
                     if (playbackState->wantedParentLayer != NO_LAYER) {
                         AudioPlayback_NoteDisable(note);
                         if (playbackState->wantedParentLayer->channel != NULL) {
@@ -333,34 +333,34 @@ void AudioPlayback_ProcessNotes(void) {
             scale = AudioEffects_UpdateAdsr(&playbackState->adsr);
             AudioEffects_UpdatePortamentoAndVibrato(note);
 
-            attr = &playbackState->attributes;
+            playbackStateAttr = &playbackState->attributes;
             if ((playbackState->status == PLAYBACK_STATUS_1) || (playbackState->status == PLAYBACK_STATUS_2)) {
-                sp70.freqMod = attr->freqMod;
-                sp70.velocity = attr->velocity;
-                sp70.pan = attr->pan;
-                sp70.reverb = attr->reverb;
-                sp70.stereo = attr->stereo;
-                sp70.gain = attr->gain;
+                attr.freqMod = playbackStateAttr->freqMod;
+                attr.velocity = playbackStateAttr->velocity;
+                attr.pan = playbackStateAttr->pan;
+                attr.reverb = playbackStateAttr->reverb;
+                attr.stereo = playbackStateAttr->stereo;
+                attr.gain = playbackStateAttr->gain;
                 bookOffset = sampleState->bitField1.bookOffset;
             } else {
-                sp70.freqMod = playbackState->parentLayer->noteFreqMod;
-                sp70.velocity = playbackState->parentLayer->noteVelocity;
-                sp70.pan = playbackState->parentLayer->notePan;
-                sp70.stereo = playbackState->parentLayer->stereo;
-                sp70.reverb = playbackState->parentLayer->channel->targetReverbVol;
-                sp70.gain = playbackState->parentLayer->channel->reverbIndex;
+                attr.freqMod = playbackState->parentLayer->noteFreqMod;
+                attr.velocity = playbackState->parentLayer->noteVelocity;
+                attr.pan = playbackState->parentLayer->notePan;
+                attr.stereo = playbackState->parentLayer->stereo;
+                attr.reverb = playbackState->parentLayer->channel->targetReverbVol;
+                attr.gain = playbackState->parentLayer->channel->reverbIndex;
 
                 bookOffset = playbackState->parentLayer->channel->bookOffset % 8U;
                 if ((playbackState->parentLayer->channel->seqPlayer->muted) &&
                     (playbackState->parentLayer->channel->muteBehavior & 8)) {
-                    sp70.freqMod = 0.0f;
-                    sp70.velocity = 0.0f;
+                    attr.freqMod = 0.0f;
+                    attr.velocity = 0.0f;
                 }
             }
-            sp70.freqMod *= playbackState->vibratoFreqMod * playbackState->portamentoFreqMod;
-            sp70.freqMod *= gAudioBufferParams.resampleRate;
-            sp70.velocity *= scale;
-            AudioPlayback_InitSampleState(note, &sp70);
+            attr.freqMod *= playbackState->vibratoFreqMod * playbackState->portamentoFreqMod;
+            attr.freqMod *= gAudioBufferParams.resampleRate;
+            attr.velocity *= scale;
+            AudioPlayback_InitSampleState(note, &attr);
             sampleState->bitField1.bookOffset = bookOffset;
         next:;
         }
@@ -396,7 +396,7 @@ void AudioPlayback_SeqLayerDecayRelease(SequenceLayer* layer, s32 target) {
         }
     } else {
         noteAttr = &note->playbackState.attributes;
-        if (note->playbackState.adsr.state != 6) {
+        if (note->playbackState.adsr.state != ADSR_STATE_DECAY) {
             noteAttr->freqMod = layer->noteFreqMod;
             noteAttr->velocity = layer->noteVelocity;
             noteAttr->pan = layer->notePan;
