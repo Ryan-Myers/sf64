@@ -4394,10 +4394,10 @@ void Option_Invoice_Update(void) {
 
         case 1:
             if (D_menu_801B9178 == 0) {
-                if (((gTotalHits * 64) >= 50000) && ((gTotalHits * 64) < 70000)) {
+                if (((gTotalHits * 64) >= 50000) && ((gTotalHits * 64) < 70000)) { // Between 781.25 and 1093.75 hits
                     AUDIO_PLAY_SFX(NA_SE_VO_PEPPER_CONSENT, gDefaultSfxSource, 4);
                 }
-                if ((gTotalHits * 64) >= 70000) {
+                if ((gTotalHits * 64) >= 70000) { // more than 1093.75 hits
                     AUDIO_PLAY_SFX(NA_SE_VO_PEPPER_SURPRISE, gDefaultSfxSource, 4);
                 }
                 D_menu_801B9178 = 20;

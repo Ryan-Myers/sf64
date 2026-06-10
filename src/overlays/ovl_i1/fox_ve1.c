@@ -411,8 +411,7 @@ void Venom1_Ve1Pillar1_Update(Ve1Pillar1* this) {
 
                 effect = Effect_Load(OBJ_EFFECT_394);
                 if (effect != NULL) {
-                    effect->unk_7A = 11;
-                    effect->unk_78 = effect->unk_7A;
+                    effect->unk_78 = effect->unk_7A = 11;
                     effect->obj.status = OBJ_ACTIVE;
 
                     effect->obj.pos.x = RAND_FLOAT_CENTERED(3.0f) + this->obj.pos.x;
@@ -608,8 +607,7 @@ void Venom1_Ve1Pillar4_Update(Ve1Pillar4* this) {
 
                 effect394 = Effect_Load(OBJ_EFFECT_394);
                 if (effect394 != NULL) {
-                    effect394->unk_7A = 11;
-                    effect394->unk_78 = effect394->unk_7A;
+                    effect394->unk_78 = effect394->unk_7A = 11;
                     effect394->obj.status = OBJ_ACTIVE;
                     effect394->obj.pos.x = this->obj.pos.x + RAND_FLOAT_CENTERED(3.0f);
                     effect394->obj.pos.y = this->obj.pos.y + RAND_FLOAT_CENTERED(3.0f);
@@ -2382,7 +2380,7 @@ void Venom1_Ve1Golemech_Update(Ve1Golemech* this) {
             effect = Effect_Load(OBJ_EFFECT_394);
             if (effect != NULL) {
                 Matrix_MultVec3f(gCalcMatrix, (Vec3f*) (&this->fwork[3]), &spF8);
-                effect->unk_78 = (effect->unk_7A = 11);
+                effect->unk_78 = effect->unk_7A = 11;
                 effect->obj.pos.x = this->obj.pos.x + spF8.x;
                 effect->obj.pos.y = this->obj.pos.y + spF8.y;
                 effect->obj.pos.z = this->obj.pos.z + spF8.z;

@@ -3303,7 +3303,7 @@ void Effect_Effect394_Draw(Effect394* this) {
             this->obj.rot.z += 1.0f;
             break;
 
-        case 17:
+        case 17: // Seems unused, maybe some leftover for debugging Effect_Electric_Arc?
             //! DEBUG: some code used for debugging with the 4th controller
             if ((gControllerPress[3].button & U_JPAD) && (D_800D18E4 > 0)) {
                 D_800D18E4--;

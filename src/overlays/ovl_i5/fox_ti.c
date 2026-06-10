@@ -3558,8 +3558,7 @@ void Titania_80192118(TiGoras* this) {
                 effect = Effect_Load(OBJ_EFFECT_394);
                 if (effect != NULL) {
                     effect->obj.status = OBJ_ACTIVE;
-                    effect->unk_7A = 10;
-                    effect->unk_78 = effect->unk_7A;
+                    effect->unk_78 = effect->unk_7A = 10;
                     effect->obj.pos.x = temp_ft2;
                     effect->obj.pos.y = this->obj.pos.y;
                     effect->obj.pos.z = temp_ft4;
@@ -3589,8 +3588,7 @@ void Titania_80192118(TiGoras* this) {
                 effect = Effect_Load(OBJ_EFFECT_394);
                 if (effect != NULL) {
                     effect->obj.status = OBJ_ACTIVE;
-                    effect->unk_7A = 10;
-                    effect->unk_78 = effect->unk_7A;
+                    effect->unk_78 = effect->unk_7A = 10;
                     effect->obj.pos.x = temp_ft2;
                     effect->obj.pos.y = this->obj.pos.y;
                     effect->obj.pos.z = temp_ft4;
@@ -3620,8 +3618,7 @@ void Titania_80192118(TiGoras* this) {
                 effect = Effect_Load(OBJ_EFFECT_394);
                 if (effect != NULL) {
                     effect->state = 10;
-                    effect->unk_7A = 10;
-                    effect->unk_78 = effect->unk_7A;
+                    effect->unk_78 = effect->unk_7A = 10;
                     effect->obj.pos.x = temp_ft2;
                     effect->obj.pos.y = this->obj.pos.y;
                     effect->obj.pos.z = temp_ft4;
